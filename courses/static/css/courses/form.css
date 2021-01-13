@@ -1,0 +1,57 @@
+h1 {
+    height: 10vh;
+    font-weight: 800;
+    font-size: 4rem;
+    background-color: rgb(223, 218, 218);
+    color: #FFF;
+    padding-left: 2rem;
+    padding-top: 2rem;
+}
+.module {
+    padding-left: 2rem;
+    padding-top: 2rem;
+}
+h2 {
+    font-weight: 500;
+    font-size: 3rem;
+    margin-bottom: 2rem;
+}
+label {
+    font-size: 2.5rem;
+}
+
+#id_subject, #id_title, #id_slug, #id_overview {
+    display: block;
+    width: 35vw;
+    height: 6rem;
+    margin-bottom: 4rem;
+    border: 2px solid rgb(223, 218, 218);
+    border-bottom: 4px solid rgb(223, 218, 218);
+    background-color: #FFF;
+    font-size: 2rem;
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+/* Redefine somme properties for subject and overview */
+#id_subject {
+    background-color:rgb(223, 218, 218);
+}
+#id_overview {
+    width: 35vw;
+    height: 15vh;
+}
+
+.button {
+    height: 6rem;
+    color: #FFF;
+    background-color: rgb(73, 207, 55);
+    width: 25vw;
+    font-size: 3rem;
+    border: 1px solid rgb(73, 207, 55);
+    border-radius: 0.8rem/0.8rem ;
+    margin-top: 3rem;
+}
+.button:hover {
+    color: rgb(73, 207, 55);
+    background-color: #FFF;
+}

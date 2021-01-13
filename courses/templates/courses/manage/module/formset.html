@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Edit "{{ course.title }}"
+{% endblock %}
+
+{% block extras-styles %}
+<link href="{% static 'css/courses/formset.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<h1>Edit "{{ course.title }}"</h1>
+
+<div class="module">
+    <h2>Course modules</h2>
+    <form action="" method="post">
+        {{ formset }}
+        {{ formset.management_form }}
+        {% csrf_token %}
+        <button type="submit" class="button">
+            Save modules
+        </button>
+    </form>
+</div>
+{% endblock %}

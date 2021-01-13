@@ -1,0 +1,53 @@
+/* Prevent the browser to add default margin and padding */
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: inherit;
+}
+
+/* Set a root font size to allows us to use
+    rem in simply way : 1 rem => 10px */
+html {
+    font-size: 10px;
+}
+
+/* Apply some globals styles to the body */
+body {
+    box-sizing: border-box;
+}
+
+#content {
+    margin-bottom: 2rem;
+}
+
+/* Header */
+header {
+    height: 7vh;
+    background-color: rgb(73, 207, 55);
+    border-bottom: 1rem solid rgb(76, 150, 67);
+    padding: 0rem 2rem 1rem 2rem;
+    text-align: right;
+
+    display: flex;
+}
+.logo-div, .menu {
+    align-self: flex-end;
+}
+.logo {
+    font-size: 3rem;
+    font-weight: 700;
+    flex-grow: 1;
+    text-transform: uppercase;
+}
+.menu {
+    font-size: 2rem;
+    flex-grow: 5;
+}
+.menu > li {
+    list-style-type: none;
+}
+
+.h-link {
+    text-decoration: none;
+    color: #FFF;
+}

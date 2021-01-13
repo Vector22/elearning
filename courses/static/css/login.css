@@ -1,0 +1,46 @@
+h1 {
+    height: 10vh;
+    font-weight: 800;
+    font-size: 4rem;
+    background-color: rgb(223, 218, 218);
+    color: #FFF;
+    padding-left: 2rem;
+    padding-top: 2rem;
+}
+.module {
+    padding-left: 2rem;
+    padding-top: 2rem;
+}
+.error, .info-text {
+    font-size: 2rem;
+}
+
+form {
+    margin-top: 3rem;
+}
+form > p > label {
+    font-size: 2.5rem;
+}
+
+#id_username, #id_password {
+    display: block;
+    width: 35vw;
+    height: 6rem;
+    margin-bottom: 4rem;
+    border: 2px solid rgb(223, 218, 218);
+    border-bottom: 4px solid rgb(223, 218, 218);
+    background-color: #FFF;
+    font-size: 2rem;
+    padding: 0.5rem;
+    margin-top: 1rem;
+}
+
+.login-btn {
+    height: 6rem;
+    color: #FFF;
+    background-color: rgb(73, 207, 55);
+    width: 25vw;
+    font-size: 3rem;
+    border: 1px solid rgb(73, 207, 55);
+    border-radius: 0.8rem/0.8rem ;
+}
