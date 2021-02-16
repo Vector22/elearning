@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{% if object %}
+Edit content "{{ object.title }}"
+{% else %}
+Add a new content
+{% endif %}
+{% endblock %}
+
+{% block extras-styles %}
+<link href="{% static 'css/contents/content_form.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<h1>
+    {% if object %}
+    Edit content "{{ object.title }}"
+    {% else %}
+    Add a new content
+    {% endif %}
+</h1>
+<div class="module">
+    <h2>Course info</h2>
+    <form action="" method="post" enctype="multipart/form-data">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <p><input type="submit" class="submit-btn" value="Create content" /></p>
+    </form>
+</div>
+{% endblock %}
