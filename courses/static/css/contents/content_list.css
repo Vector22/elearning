@@ -1,0 +1,117 @@
+:root {
+    --primary-black: rgba(0, 0, 0, 0.8);
+    --secondary-black: rgba(70, 70, 70, 1);
+    --primary-green: rgb(73, 207, 55);
+    --light-green: rgb(219, 231, 218);;
+    --dark-green: rgb(76, 150, 67);
+    --light-silver: rgb(223,218,218);
+    --white: #FFF;
+}
+
+h1 {
+    height: 10vh;
+    font-weight: 800;
+    font-size: 4rem;
+    background-color: var(--light-silver);
+    color: var(--white);
+    padding-left: 2rem;
+    padding-top: 2rem;
+}
+
+.module {
+    display: flex;
+    padding: 2rem;
+    font-size: 2.5rem;
+}
+
+aside {
+    flex: 25%;
+    border: 1px solid green;
+    background-color: var(--primary-black);
+    color: var(--white);
+    padding: 4rem 2rem;
+}
+
+section {
+    flex: 75%;
+    border: 1px solid yellowgreen;
+    padding: 5rem 3rem;
+}
+
+.module__menu-box {
+    background-color: var(--secondary-black);
+    margin: 1rem 1.2rem;
+    cursor: grab;
+}
+.module__menu-item {
+    list-style: none;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+.module__menu-item > a {
+    text-decoration: none;
+    color: var(--white);
+}
+.module__menu-item > a > span {
+    color: var(--light-silver);
+    text-transform: uppercase;
+}
+.module__menu-link {
+    text-decoration: none;
+    color: var(--dark-green);
+}
+.module__menu-link:hover {
+    color: var(--primary-green);
+}
+
+.module__body-h3 {
+    margin-top: 2rem;
+    margin-bottom: 1.5rem;
+}
+.module__body-content {
+    padding: 2rem 1.5rem;
+    border: 2px solid var(--light-silver);
+}
+.module__body-actions {
+    display: flex;
+    margin-top: 2rem;
+}
+.module__body-action1 {
+    flex: 1;
+}
+.module__body-action1 > a {
+    text-decoration: none;
+    color: var(--primary-green);
+    font-weight: 400;
+}
+.module__body-action2 {
+    flex: 4;
+}
+.module__body-action2 > input {
+    border: none;
+    font-size: 2.5rem;
+    font-weight: 400;
+    color: var(--primary-green);
+    background-color: var(--white);
+}
+.module__body-action2 > input:hover {
+    cursor: pointer;
+}
+.module__body-links {
+    display: flex;
+    margin-left: 2rem;
+}
+.module__body-link {
+    list-style: none;
+    padding: 1rem 1.5rem;
+    margin: 0 1rem;
+    background-color: var(--light-silver);
+}
+.module__body-link:hover {
+    background-color: var(--secondary-black);
+    color: var(--primary-green);
+}
+.module__body-link > a {
+    text-decoration: none;
+    color: var(--dark-green);
+}

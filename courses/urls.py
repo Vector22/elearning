@@ -18,6 +18,9 @@ urlpatterns = [
          views.CourseModuleUpdateView.as_view(),
          name='course_module_update'),
     # Contents urls
+    path('module/<int:module_id>/',
+         views.ModuleContentListView.as_view(),
+         name='module_content_list'),
     path('module/<int:module_id>/content/<model_name>/create/',
          views.ContentCreateUpdateView.as_view(),
          name='module_content_create'),
@@ -27,4 +30,10 @@ urlpatterns = [
     path('content/<int:id>/delete/',
          views.ContentDeleteView.as_view(),
          name='module_content_delete'),
+    # Ajax json views
+    path('module/order/', views.ModuleOrderView.as_view(),
+         name='module_order'),
+    path('content/order/',
+         views.ContentOrderView.as_view(),
+         name='content_order'),
 ]

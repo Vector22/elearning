@@ -28,7 +28,7 @@ form > p > label {
     font-size: 2.5rem;
 }
 
-#id_title, #id_file {
+#id_title, #id_file, #id_url, #id_content {
     display: block;
     width: 35vw;
     height: 6rem;
@@ -45,6 +45,11 @@ form > p > label {
     vertical-align: center;
     padding-left: 1rem;
     padding-top: 1.3rem;
+}
+
+#id_content {
+    width: 35vw;
+    height: 15vh;
 }
 
 .submit-btn {

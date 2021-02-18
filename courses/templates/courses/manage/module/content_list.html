@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+{% load course %}
+{% load static %}
+
+{% block title %}
+Module {{ module.order|add:1 }}: {{ module.title }}
+{% endblock %}
+
+{% block extras-styles %}
+<link href="{% static 'css/contents/content_list.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+{% with module.course as course %}
+<h1>Course "{{ course.title }}"</h1>
+
+<div class="module">
+    <aside class="module__menu">
+        <h3>Modules</h3>
+        <ul class="module__menu-box" id="module__menu-box">
+            {% for m in course.modules.all %}
+            <li data-id="{{ m.id }}" {% if m is module %} class="selected" {% endif %} class="module__menu-item">
+                <a href="{% url 'courses:module_content_list' m.id %}">
+                    <span>
+                        Module <span class="order">{{ m.order|add:1 }}</span>
+                    </span>
+                    <br>
+                    {{ m.title }}
+                </a>
+            </li>
+            {% empty %}
+            <li>No modules yet.</li>
+            {% endfor %}
+        </ul>
+        <p>
+            <a href="{% url 'courses:course_module_update' course.id %}" class="module__menu-link">Edit modules</a>
+        </p>
+    </aside>
+
+    <section class="module__body">
+        <h2 class="module__body-h2">Module {{ module.order|add:1 }}: {{ module.title }}</h2>
+        <h3 class="module__body-h3">Module contents:</h3>
+        <div class="module__body-box" id="module__body-box">
+            {% for content in module.contents.all %}
+            <div data-id="{{ content.id }}" class="module__body-content">
+                {% with item=content.item %}
+                <p>{{ item }} ({{ item|model_name }})</p>
+                <div class="module__body-actions">
+                    <p class="module__body-action1">
+                        <a href="{% url 'courses:module_content_update' module.id item|model_name item.id %}">Edit</a>
+                    </p>
+
+                    <form action="{% url 'courses:module_content_delete' content.id %}" method="post"
+                        class="module__body-action2">
+                        <input type="submit" value="Delete">
+                        {% csrf_token %}
+                    </form>
+                </div>
+                {% endwith %}
+            </div>
+            {% empty %}
+            <p>This module has no contents yet.</p>
+            {% endfor %}
+        </div>
+        <h3 class="module__body-h3">Add new content:</h3>
+        <ul class="module__body-links">
+            <li class="module__body-link">
+                <a href="{% url 'courses:module_content_create' module.id 'text' %}">Text</a>
+            </li>
+            <li class="module__body-link">
+                <a href="{% url 'courses:module_content_create' module.id 'image' %}">Image</a>
+            </li>
+            <li class="module__body-link">
+                <a href="{% url 'courses:module_content_create' module.id 'video' %}">Video</a>
+            </li>
+            <li class="module__body-link">
+                <a href="{% url 'courses:module_content_create' module.id 'file' %}">File</a>
+            </li>
+        </ul>
+    </section>
+</div>
+
+
+{% endwith %}
+{% endblock %}
+
+{% block js %}
+<script>
+    $('#module__menu-box').sortable({
+        stop: function (event, ui) {
+            modules_order = {};
+            $('#module__menu-box').children().each(function () {
+                // update the order field
+                $(this).find('.order').text($(this).index() + 1);
+                // associate the module's id with its order
+                modules_order[$(this).data('id')] = $(this).index();
+            });
+            $.ajax({
+                type: 'POST',
+                url: '{% url "courses:module_order" %}',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify(modules_order)
+            });
+
+        }
+    });
+
+    $('#module__body-box').sortable({
+        stop: function (event, ui) {
+            contents_order = {};
+            $('#module__body-box').children().each(function () {
+                // associate the module's id with its order
+                contents_order[$(this).data('id')] = $(this).index();
+            });
+            $.ajax({
+                type: 'POST',
+                url: '{% url "courses:content_order" %}',
+                contentType: 'application/json; charset=utf-8',
+                dataType: 'json',
+                data: JSON.stringify(contents_order),
+            });
+        }
+    });
+
+</script>
+{% endblock %}
