@@ -34,3 +34,8 @@ h1 {
     text-decoration: none;
     color: var(--primary-green);
 }
+.course__content-overview {
+    font-size: 2.2rem;
+    margin-top: 2rem;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
