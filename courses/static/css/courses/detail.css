@@ -1,0 +1,36 @@
+:root {
+    --primary-black: rgba(0, 0, 0, 0.8);
+    --secondary-black: rgba(70, 70, 70, 1);
+    --primary-green: rgb(73, 207, 55);
+    --light-green: rgb(219, 231, 218);;
+    --dark-green: rgb(76, 150, 67);
+    --light-silver: rgb(223,218,218);
+    --white: #FFF;
+}
+
+h1 {
+    height: 10vh;
+    font-weight: 800;
+    font-size: 4rem;
+    background-color: var(--light-silver);
+    color: var(--white);
+    padding-left: 10rem;
+    padding-top: 2rem;
+}
+
+.course__content {
+    padding: 5rem;
+}
+.course__content-title {
+    font-size: 2.5rem;
+    font-family: 'Andale Mono', Courier,'Courier New', monospace;
+    font-weight: 200;
+    margin-bottom: 3rem;
+}
+.course__content-info {
+    font-size: 2rem;
+}
+.course__content-info > a {
+    text-decoration: none;
+    color: var(--primary-green);
+}

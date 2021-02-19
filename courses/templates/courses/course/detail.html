@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{ object.title }}
+{% endblock %}
+
+{% block extras-styles %}
+<link href="{% static 'css/courses/detail.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+{% with subject=course.subject %}
+<h1>
+    {{ object.title }}
+</h1>
+<div class="course">
+    <div class="course__content">
+        <h2 class="course__content-title">Overview</h2>
+        <p class="course__content-info">
+            <a href="{% url 'courses:course_list_subject' subject.slug %}">{{ subject.title }}</a>.
+            {{ course.modules.count }} modules.
+            <!-- Instructor: {{ course.owner.get_full_name }} -->
+            Instructor: {{ course.owner.username }}
+        </p>
+        <p class="course__content-overview">
+            {{ object.overview|linebreaks }}
+        </p>
+    </div>
+</div>
+{% endwith %}
+{% endblock %}

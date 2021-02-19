@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{% if subject %}
+{{ subject.title }} courses
+{% else %}
+All courses
+{% endif %}
+{% endblock %}
+
+
+{% block extras-styles %}
+<link href="{% static 'css/courses/list.css' %}" rel="stylesheet">
+{% endblock %}
+
+
+{% block content %}
+<h1>
+    {% if subject %}
+    {{ subject.title }} courses
+    {% else %}
+    All courses
+    {% endif %}
+</h1>
+
+<div class="courses">
+    <aside class="courses__subjects">
+        <h3>Subjects</h3>
+        <ul id="courses__subjects-box" class="courses__subjects-box">
+            <li class="{% if not subject %} selected {% endif %}courses__subjects-item">
+                <a href="{% url 'course_list' %}">All</a>
+            </li>
+            {% for s in subjects %}
+            <li class="{% if s == subject %}selected {% endif %} courses__subjects-item">
+                <a href="{% url 'courses:course_list_subject' s.slug %}">
+                    {{ s.title }}
+                    <br><span>{{ s.total_courses }} courses</span>
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </aside>
+
+    <section class="courses__items">
+        {% for course in courses %}
+        {% with subject=course.subject %}
+        <div class="courses__items-box">
+            <h3 class="courses__items-title">
+                <a href="{% url 'courses:course_detail' course.slug %}">{{ course.title }}</a>
+            </h3>
+            <p class="courses__items-subject">
+                <a href="{% url 'courses:course_list_subject' subject.slug %}">{{ subject }}</a>.
+                {{ course.total_modules }} modules.
+                <!-- Instructor: {{ course.owner.get_full_name }} -->
+                Instructor: {{ course.owner.username }}
+            </p>
+        </div>
+        {% endwith %}
+        {% endfor %}
+    </section>
+</div>
+
+{% endblock %}

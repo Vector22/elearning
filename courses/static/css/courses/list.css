@@ -1,4 +1,6 @@
 :root {
+    --primary-black: rgba(0, 0, 0, 0.8);
+    --secondary-black: rgba(70, 70, 70, 1);
     --primary-green: rgb(73, 207, 55);
     --light-green: rgb(219, 231, 218);;
     --dark-green: rgb(76, 150, 67);
@@ -16,48 +18,66 @@ h1 {
     padding-top: 2rem;
 }
 
-.module {
-    padding: 2rem;
+.courses {
+    display: flex;
+    /* padding: 2rem; */
     font-size: 2.5rem;
 }
-.courses {
-    display: grid;
-    grid-template-columns: auto auto auto;
-    padding: 0;
+
+aside {
+    flex: 25%;
+    background-color: var(--primary-black);
+    color: var(--white);
+    padding: 4rem 2rem;
 }
 
-.course_item {
-    background-color: var(--white);
-    margin: 1rem;
-    padding: 2rem;
-    border: 2px solid var(--light-silver);
-    transition: 0.5s;
+section {
+    flex: 75%;
+    padding: 5rem 3rem;
 }
-.course_item:hover {
-    border: 2px solid var(--primary-green);
-    background-color: var(--light-green);
+
+.courses__subjects-box {
+    /* background-color: var(--secondary-black); */
+    margin: 1rem 1.2rem;
 }
-.link {
+.selected {
+    background-color: var(--secondary-black);
+}
+
+.courses__subjects-item {
+    list-style: none;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+.courses__subjects-item:hover {
+    border: 0.5rem dashed var(--secondary-black);
+}
+.courses__subjects-item > a {
+    text-decoration: none;
+    color: var(--white);
+}
+.courses__subjects-item > a > span {
+    color: var(--light-silver);
+    text-transform: uppercase;
+}
+.courses__items-box {
+    padding: 2rem 1.5rem;
+    /* border: 2px solid var(--light-silver); */
+}
+.courses__items-title {
+    font-family: 'Andale Mono', Courier,'Courier New', monospace;
+    font-weight: 200;
+    margin-bottom: 2rem;
+}
+.courses__items-title > a {
     text-decoration: none;
     color: var(--primary-green);
 }
-.link:hover {
-    color: var(--dark-green);
+.courses__items-subject {
+
+}
+.courses__items-subject > a {
+    text-decoration: none;
+    color: var(--primary-green);
 }
 
-.button {
-    height: 6rem;
-    color: var(--white);
-    background-color: var(--primary-green);
-    width: 25vw;
-    font-size: 3rem;
-    border: 1px solid var(--primary-green);
-    border-radius: 0.8rem/0.8rem ;
-    margin-top: 3rem;
-    cursor: pointer;
-    transition: 0.5s;
-}
-.button:hover {
-    color: var(--primary-green);
-    background-color: var(--white);
-}

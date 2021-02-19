@@ -5,3 +5,4 @@ env/
 elearning/__pycache__/
 courses/__pycache__/
 courses/migrations/__pycache__/
+courses/templatetags/__pycache__/

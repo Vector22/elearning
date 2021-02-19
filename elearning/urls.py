@@ -16,6 +16,9 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as auth_views
+
+from courses.views import CourseListView
+
 import debug_toolbar
 
 urlpatterns = [
@@ -24,5 +27,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
+    # We want to display the list of courses in the URL http://127.0.0.1:8000/
+    # and all other URLs for the courses application have the /course/ prefix.
+    path('', CourseListView.as_view(), name='course_list'),
     path('course/', include('courses.urls')),
 ]

@@ -5,6 +5,7 @@ from . import views
 app_name = 'courses'
 
 urlpatterns = [
+    # Courses urls
     path('my_courses/',
          views.ManageCourseListView.as_view(),
          name='manage_course_list'),
@@ -13,11 +14,17 @@ urlpatterns = [
     path('<pk>/delete/',
          views.CourseDeleteView.as_view(),
          name='course_delete'),
-    # Modules urls
+    path('subject/<slug:subject>/',
+         views.CourseListView.as_view(),
+         name='course_list_subject'),
+    path('<slug:slug>/',
+         views.CourseDetailView.as_view(),
+         name='course_detail'),
+
+    # Modules & Contents urls
     path('<pk>/module/',
          views.CourseModuleUpdateView.as_view(),
          name='course_module_update'),
-    # Contents urls
     path('module/<int:module_id>/',
          views.ModuleContentListView.as_view(),
          name='module_content_list'),
@@ -30,6 +37,7 @@ urlpatterns = [
     path('content/<int:id>/delete/',
          views.ContentDeleteView.as_view(),
          name='module_content_delete'),
+
     # Ajax json views
     path('module/order/', views.ModuleOrderView.as_view(),
          name='module_order'),
