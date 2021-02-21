@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+Sign up
+{% endblock %}
+
+{% block extras-styles %}
+<link href="{% static 'css/students/registration.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<h1>
+    Sign up
+</h1>
+
+<div class="registration">
+    <p class="registration__header">Enter your details to create an account:</p>
+    <form action="" method="post" class="registration__form">
+        {{ form.as_p }}
+        {% csrf_token %}
+        <p class="registration__form-btn">
+            <input type="submit" value="Create my account" class="login-btn">
+        </p>
+    </form>
+</div>
+{% endblock %}

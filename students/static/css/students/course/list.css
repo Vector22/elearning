@@ -1,0 +1,47 @@
+:root {
+    --primary-black: rgba(0, 0, 0, 0.8);
+    --secondary-black: rgba(70, 70, 70, 1);
+    --primary-green: rgb(73, 207, 55);
+    --light-green: rgb(219, 231, 218);;
+    --dark-green: rgb(76, 150, 67);
+    --light-silver: rgb(223,218,218);
+    --white: #FFF;
+}
+
+h1 {
+    height: 10vh;
+    font-weight: 800;
+    font-size: 4rem;
+    background-color: var(--light-silver);
+    color: var(--white);
+    padding-left: 2rem;
+    padding-top: 2rem;
+}
+
+.courses {
+    font-size: 2.5rem;
+    padding: 5rem;
+}
+
+.courses__info {
+    margin-bottom: 2rem;
+    padding: 2rem 1.5rem;
+    border: 2px solid var(--primary-green);
+    box-shadow: 1rem 1rem 1rem var(--light-green);
+}
+.courses__info:hover {
+    border: 2px solid var(--primary-green);
+    box-shadow: 0.5rem 0.5rem 0.5rem var(--light-green);
+}
+.courses__info-title {
+    font-family: 'Andale Mono', Courier,'Courier New', monospace;
+    font-weight: 200;
+    margin-bottom: 2rem;
+}
+.courses__info-link > a {
+    text-decoration: none;
+    color: var(--primary-green);
+}
+.courses__info-link > a:hover {
+    color: var(--dark-green);
+}

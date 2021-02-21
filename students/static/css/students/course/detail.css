@@ -1,0 +1,71 @@
+:root {
+    --primary-black: rgba(0, 0, 0, 0.8);
+    --secondary-black: rgba(70, 70, 70, 1);
+    --primary-green: rgb(73, 207, 55);
+    --light-green: rgb(219, 231, 218);;
+    --dark-green: rgb(76, 150, 67);
+    --light-silver: rgb(223,218,218);
+    --white: #FFF;
+}
+
+h1 {
+    height: 10vh;
+    font-weight: 800;
+    font-size: 4rem;
+    background-color: var(--light-silver);
+    color: var(--white);
+    padding-left: 2rem;
+    padding-top: 2rem;
+}
+
+.course {
+    display: flex;
+    font-size: 2.5rem;
+}
+
+aside {
+    flex: 25%;
+    border: 1px solid green;
+    background-color: var(--primary-black);
+    color: var(--white);
+    padding: 4rem 2rem;
+}
+
+section {
+    flex: 75%;
+    border: 1px solid yellowgreen;
+    padding: 5rem 3rem;
+}
+
+.modules__list {
+    background-color: var(--secondary-black);
+    margin: 1rem 1.2rem;
+}
+.selected {
+    box-shadow: inset 0 0 0.5rem var(--primary-green) ;
+}
+.modules__list-item {
+    list-style: none;
+    padding: 1rem;
+    margin-top: 2rem;
+}
+.modules__list-item > a {
+    text-decoration: none;
+    color: var(--white);
+    transition: all 0.5s;
+}
+.modules__list-item > a:hover {
+    color: var(--dark-green);
+}
+
+.content {
+    margin: 5rem 0;
+}
+.content__title {
+    font-family: 'Andale Mono', Courier,'Courier New', monospace;
+    font-weight: 200;
+}
+.content__body {
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}

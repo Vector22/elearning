@@ -9,6 +9,9 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes.fields import GenericForeignKey
+# For ItemBase render() method
+from django.template.loader import render_to_string
+from django.utils.safestring import mark_safe
 
 from .fields import OrderField
 
@@ -33,6 +36,11 @@ class Course(models.Model):
     subject = models.ForeignKey(Subject,
                                 related_name='courses',
                                 on_delete=models.CASCADE)
+    # The students who belong this courses
+    students = models.ManyToManyField(User,
+                                      related_name='courses_joined',
+                                      blank=True)
+
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200, unique=True)
     overview = models.TextField()
@@ -92,6 +100,15 @@ class ItemBase(models.Model):
 
     def __str__(self):
         return self.title
+
+    def render(self):
+        # This method uses the render_to_string() function for rendering
+        # a template and returning the rendered content as a string.
+        # Each kind of content is rendered using a template named after
+        # the content model.
+        return render_to_string(
+            'courses/content/{}.html'.format(self._meta.model_name),
+            {'item': self})
 
 
 class Text(ItemBase):

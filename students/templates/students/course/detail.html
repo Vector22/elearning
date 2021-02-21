@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}
+{{ object.title }}
+{% endblock %}
+
+{% block extras-styles %}
+<link href="{% static 'css/students/course/detail.css' %}" rel="stylesheet">
+{% endblock %}
+
+{% block content %}
+<h1>
+    {{ module.title }}
+</h1>
+
+<div class="course">
+    <aside class="modules">
+        <h3 class="modules__title">Modules</h3>
+        <ul id="modules" class="modules__list">
+            {% for m in object.modules.all %}
+            <li data-id="{{ m.id }}" class="{% if m == module %}selected{% endif %} modules__list-item">
+                <a href="{% url 'students:student_course_detail_module' object.id m.id %}">
+                    <span class="module__list-order">
+                        Module <span class="order">{{ m.order|add:1 }}</span>
+                    </span>
+                    <br>
+                    <span class="module__list-title">{{ m.title }}</span>
+                </a>
+            </li>
+            {% empty %}
+            <li class="modules__list-item">No modules yet.</li>
+            {% endfor %}
+        </ul>
+    </aside>
+    <section class="contents">
+        {% for content in module.contents.all %}
+        <div class="content">
+            {% with content.item as item %}
+            <h3 class="content__title">{{ item.title }}</h3>
+            <p class="content__body">{{ item.render }}</p>
+            {% endwith %}
+            {% empty %}
+            <h3>No contents yet...</h3>
+        </div>
+        {% endfor %}
+    </section>
+</div>
+{% endblock %}

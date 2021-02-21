@@ -25,6 +25,20 @@
         </p>
         <div class="course__content-overview">
             {{ object.overview|linebreaks }}
+            {% if request.user.is_authenticated %}
+            <form action="{% url 'students:student_enroll_course' %}" method="post">
+                {{ enroll_form }}
+                {% csrf_token %}
+                <input type="submit" class="enroll-btn" value="Enroll now">
+            </form>
+            {% else %}
+            <button class="register-btn">
+                <a href="{% url 'students:student_registration' %}" class="register-link">
+                    Register to enroll
+                </a>
+            </button>
+            {% endif %}
+
         </div>
 
     </div>
