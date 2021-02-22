@@ -25,7 +25,6 @@ h1 {
 
 aside {
     flex: 25%;
-    border: 1px solid green;
     background-color: var(--primary-black);
     color: var(--white);
     padding: 4rem 2rem;
@@ -33,7 +32,6 @@ aside {
 
 section {
     flex: 75%;
-    border: 1px solid yellowgreen;
     padding: 5rem 3rem;
 }
 
@@ -56,6 +54,14 @@ section {
 }
 .modules__list-item > a:hover {
     color: var(--dark-green);
+}
+
+.modules__link-item {
+    text-decoration: none;
+    color: var(--dark-green);
+}
+.modules__link-item:hover {
+    color: var(--primary-green);
 }
 
 .content {

@@ -49,8 +49,16 @@ h1 {
     border: 1px solid var(--primary-green);
     border-radius: 0.8rem/0.8rem ;
     margin-top: 3rem;
+    cursor: pointer;
+    transition: 0.5s;
 }
+.enroll-btn:hover, .register-btn:hover {
+    color: var(--primary-green);
+    background-color: var(--white);
+} 
 .register-link {
     text-decoration: none;
-    color: var(--white);
+}
+.register-link:hover {
+    color: var(--primary-green);
 }

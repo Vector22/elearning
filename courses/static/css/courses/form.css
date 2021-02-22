@@ -1,9 +1,19 @@
+:root {
+    --primary-black: rgba(0, 0, 0, 0.8);
+    --secondary-black: rgba(70, 70, 70, 1);
+    --primary-green: rgb(73, 207, 55);
+    --light-green: rgb(219, 231, 218);;
+    --dark-green: rgb(76, 150, 67);
+    --light-silver: rgb(223,218,218);
+    --white: #FFF;
+}
+
 h1 {
     height: 10vh;
     font-weight: 800;
     font-size: 4rem;
-    background-color: rgb(223, 218, 218);
-    color: #FFF;
+    background-color: var(--light-silver);
+    color: var(--white);
     padding-left: 2rem;
     padding-top: 2rem;
 }
@@ -25,16 +35,16 @@ label {
     width: 35vw;
     height: 6rem;
     margin-bottom: 4rem;
-    border: 2px solid rgb(223, 218, 218);
-    border-bottom: 4px solid rgb(223, 218, 218);
-    background-color: #FFF;
+    border: 2px solid var(--light-silver);
+    border-bottom: 4px solid var(--light-silver);
+    background-color: var(--white);
     font-size: 2rem;
     padding: 0.5rem;
     margin-top: 1rem;
 }
 /* Redefine somme properties for subject and overview */
 #id_subject {
-    background-color:rgb(223, 218, 218);
+    background-color:var(--light-silver);
 }
 #id_overview {
     width: 35vw;
@@ -43,15 +53,15 @@ label {
 
 .button {
     height: 6rem;
-    color: #FFF;
-    background-color: rgb(73, 207, 55);
+    color: var(--white);
+    background-color: var(--primary-green);
     width: 25vw;
     font-size: 3rem;
-    border: 1px solid rgb(73, 207, 55);
+    border: 1px solid var(--primary-green);
     border-radius: 0.8rem/0.8rem ;
     margin-top: 3rem;
 }
 .button:hover {
-    color: rgb(73, 207, 55);
-    background-color: #FFF;
+    color: var(--primary-green);
+    background-color: var(--white);
 }

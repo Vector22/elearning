@@ -22,6 +22,7 @@ h1 {
 .registration {
     padding-left: 2rem;
     padding-top: 2rem;
+    margin-bottom: 5rem;
 }
 .registration__header {
     font-size: 2.5rem;
@@ -76,4 +77,23 @@ form > p > label {
     font-size: 3rem;
     border: 1px solid var(--primary-green);
     border-radius: 0.8rem/0.8rem ;
+    transition: all 0.5s;
+}
+.login-btn:hover {
+    color: var(--primary-green);
+    background-color: var(--white);
+    cursor: pointer;
+}
+
+.login{
+    font-size: 2.5rem;
+    margin-top: 3rem;
+}
+.login > a {
+    text-decoration: none;
+    color: var(--primary-green);
+    transition: all 0.5s;
+}
+.login > a:hover {
+    color: var(--dark-green);
 }

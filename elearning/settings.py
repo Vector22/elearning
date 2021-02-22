@@ -130,6 +130,7 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 LOGIN_REDIRECT_URL = reverse_lazy('students:student_course_list')
+LOGOUT_REDIRECT_URL = reverse_lazy('course_list')
 
 # Django debug toolbar
 INTERNAL_IPS = [

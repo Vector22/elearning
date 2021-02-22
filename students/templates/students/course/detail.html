@@ -32,6 +32,9 @@
             <li class="modules__list-item">No modules yet.</li>
             {% endfor %}
         </ul>
+        <p class="modules__link">
+            <a href="{% url 'course_list' %}" class="modules__link-item">Courses List</a>
+        </p>
     </aside>
     <section class="contents">
         {% for content in module.contents.all %}

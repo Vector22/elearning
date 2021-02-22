@@ -38,10 +38,11 @@ h1 {
     font-weight: 200;
     margin-bottom: 2rem;
 }
-.courses__info-link > a {
+.courses__info-link > a, .courses__empty-link{
     text-decoration: none;
     color: var(--primary-green);
+    transition: all 0.5s;
 }
-.courses__info-link > a:hover {
+.courses__info-link > a:hover, .courses__empty-link:hover {
     color: var(--dark-green);
 }

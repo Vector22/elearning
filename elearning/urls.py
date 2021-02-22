@@ -25,14 +25,14 @@ from courses.views import CourseListView
 import debug_toolbar
 
 urlpatterns = [
+    # We want to display the list of courses in the URL http://127.0.0.1:8000/
+    # and all other URLs for the courses application have the /course/ prefix.
+    path('', CourseListView.as_view(), name='course_list'),
     # Django debug toolbar
     path('__debug__/', include(debug_toolbar.urls)),
     path('admin/', admin.site.urls),
     path('accounts/login/', auth_views.LoginView.as_view(), name='login'),
     path('accounts/logout/', auth_views.LogoutView.as_view(), name='logout'),
-    # We want to display the list of courses in the URL http://127.0.0.1:8000/
-    # and all other URLs for the courses application have the /course/ prefix.
-    path('', CourseListView.as_view(), name='course_list'),
     path('course/', include('courses.urls')),
 
     # Students urls

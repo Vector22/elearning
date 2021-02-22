@@ -32,11 +32,10 @@
                 <input type="submit" class="enroll-btn" value="Enroll now">
             </form>
             {% else %}
-            <button class="register-btn">
-                <a href="{% url 'students:student_registration' %}" class="register-link">
-                    Register to enroll
-                </a>
-            </button>
+
+            <a href="{% url 'students:student_registration' %}" class="register-link">
+                <button class="register-btn">Register to enroll</button>
+            </a>
             {% endif %}
 
         </div>

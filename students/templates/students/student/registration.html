@@ -23,5 +23,10 @@ Sign up
             <input type="submit" value="Create my account" class="login-btn">
         </p>
     </form>
+    <p class="login">
+        You already have an account ?
+        <a href="{% url 'students:student_registration' %}">Login</a>
+        to enroll on severall courses.
+    </p>
 </div>
 {% endblock %}
