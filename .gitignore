@@ -7,6 +7,7 @@ elearning/__pycache__/
 courses/__pycache__/
 courses/migrations/__pycache__/
 courses/templatetags/__pycache__/
+courses/tests/__pycache__/
 
 students/__pycache__/
 students/migrations/__pycache__/
