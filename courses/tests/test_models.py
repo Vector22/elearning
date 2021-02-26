@@ -9,7 +9,7 @@ class SubjectModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        Subject.objects.create(title='Programing', slug='programing')
+        Subject.objects.create(title='Programing', slug='programing').save()
 
     def setUp(self):
         # Run once for every test method to setup clean data
