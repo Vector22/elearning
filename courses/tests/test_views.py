@@ -18,25 +18,25 @@ class CourseListViewTest(TestCase):
         cls.subject1_id = Subject.objects.create(title='Programing',
                                                  slug='programing').pk
 
-        admin = User.objects.create(username="admin",
-                                    email="admin@protonmail.com",
-                                    first_name="Administrator",
-                                    is_superuser=True)
-        admin.set_password('B3nB3n256*')
-        admin.save()
+        cls.admin = User.objects.create(username="admin",
+                                        email="admin@protonmail.com",
+                                        first_name="Administrator",
+                                        is_superuser=True)
+        cls.admin.set_password('B3nB3n256*')
+        cls.admin.save()
 
-        anyuser = User.objects.create(username="anyUser",
-                                      email="anyuser@protonmail.com",
-                                      first_name="Benoit")
-        anyuser.set_password('K4rlsTR0m*')
-        anyuser.save()
+        cls.anyuser = User.objects.create(username="anyUser",
+                                          email="anyuser@protonmail.com",
+                                          first_name="Benoit")
+        cls.anyuser.set_password('K4rlsTR0m*')
+        cls.anyuser.save()
 
     def setUp(self):
         # Run once for every test method to setup clean data
-        self.user = User.objects.get(id=1)  # The superuser can create courses
+        # self.user = User.objects.get(id=1)
         self.subject1 = Subject.objects.get(id=self.subject1_id)
         self.course1 = Course.objects.create(subject=self.subject1,
-                                             owner=self.user,
+                                             owner=self.admin,
                                              title='Course 1',
                                              slug='course-1')
 
@@ -116,29 +116,28 @@ class CourseDetailViewTest(TestCase):
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
 
-        admin = User.objects.create(username="admin",
-                                    email="admin@protonmail.com",
-                                    first_name="Administrator",
-                                    is_superuser=True)
-        admin.set_password('B3nB3n256*')
-        admin.save()
+        cls.admin = User.objects.create(username="admin",
+                                        email="admin@protonmail.com",
+                                        first_name="Administrator",
+                                        is_superuser=True)
+        cls.admin.set_password('B3nB3n256*')
+        cls.admin.save()
 
-        anyuser = User.objects.create(username="anyUser",
-                                      email="anyuser@protonmail.com",
-                                      first_name="Benoit")
-        anyuser.set_password('K4rlsTR0m*')
-        anyuser.save()
+        cls.anyuser = User.objects.create(username="anyUser",
+                                          email="anyuser@protonmail.com",
+                                          first_name="Benoit")
+        cls.anyuser.set_password('K4rlsTR0m*')
+        cls.anyuser.save()
 
         cls.subject1_id = Subject.objects.create(title='Programing',
                                                  slug='programing').pk
 
     def setUp(self):
         # Run once for every test method to setup clean data
-        self.user = User.objects.get(id=1)  # The superuser can create courses
         self.subject1 = Subject.objects.get(id=self.subject1_id)
         self.slug1 = self.subject1.slug
         self.course1 = Course.objects.create(subject=self.subject1,
-                                             owner=self.user,
+                                             owner=self.admin,
                                              title='Course 1',
                                              slug='course-1')
 
@@ -179,13 +178,13 @@ class ManageCourseListViewTest(TestCase):
         instructor_group.permissions.set([perm_add, perm_edit, perm_del])
         instructor_group.save()
 
-        instructor = User.objects.create(username="instructor",
-                                         email="instruk@protonmail.com",
-                                         first_name="Timothee",
-                                         last_name="Guichert")
-        instructor.set_password('B3nB3n256*')
-        instructor.groups.add(instructor_group)
-        instructor.save()
+        cls.instructor = User.objects.create(username="instructor",
+                                             email="instruk@protonmail.com",
+                                             first_name="Timothee",
+                                             last_name="Guichert")
+        cls.instructor.set_password('B3nB3n256*')
+        cls.instructor.groups.add(instructor_group)
+        cls.instructor.save()
 
         # # A not instructor user
         # user = User.objects.create(username="user",
