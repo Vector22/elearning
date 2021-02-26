@@ -218,38 +218,37 @@ class ManageCourseListViewTest(TestCase):
 
 # Some functionnals tests with selenium
 
+# class SeleniumTest(StaticLiveServerTestCase):
+#     @classmethod
+#     def setUpClass(cls):
+#         super().setUpClass()
+#         if settings.DEBUG:
+#             cls.selenium = WebDriver(
+#                 executable_path='/home/vector22/bin/geckodriver/geckodriver')
+#         else:
+#             # Geckodriver is on the server
+#             cls.selenium = WebDriver(
+#                 executable_path='/home/ulrich/bin/geckodriver/geckodriver')
+#         cls.selenium.implicitly_wait(3)
 
-class SeleniumTest(StaticLiveServerTestCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        if settings.DEBUG:
-            cls.selenium = WebDriver(
-                executable_path='/home/vector22/bin/geckodriver/geckodriver')
-        else:
-            # Geckodriver is on the server
-            cls.selenium = WebDriver(
-                executable_path='/home/ulrich/bin/geckodriver/geckodriver')
-        cls.selenium.implicitly_wait(3)
+#     @classmethod
+#     def tearDownClass(cls):
+#         cls.selenium.quit()
+#         super().tearDownClass()
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.selenium.quit()
-        super().tearDownClass()
+#     def test_login(self):
+#         login_url = f'{self.live_server_url}/accounts/login'
+#         self.selenium.get(login_url)
+#         username_input = self.selenium.find_element_by_id("id_username")
+#         username_input.send_keys('karl')
+#         password_input = self.selenium.find_element_by_id("id_password")
+#         password_input.send_keys('V3ct0r22*')
 
-    def test_login(self):
-        login_url = f'{self.live_server_url}/accounts/login'
-        self.selenium.get(login_url)
-        username_input = self.selenium.find_element_by_id("id_username")
-        username_input.send_keys('karl')
-        password_input = self.selenium.find_element_by_id("id_password")
-        password_input.send_keys('V3ct0r22*')
+#         self.selenium.find_element_by_class_name('login-btn').click()
 
-        self.selenium.find_element_by_class_name('login-btn').click()
+#         # Check the returned result
+#         labels = ['Username', 'Password']
 
-        # Check the returned result
-        labels = ['Username', 'Password']
-
-        # assert the presence of some wignets label
-        for label in labels:
-            assert label in self.selenium.page_source
+#         # assert the presence of some wignets label
+#         for label in labels:
+#             assert label in self.selenium.page_source
