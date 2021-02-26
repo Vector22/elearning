@@ -2,6 +2,8 @@ env/
 .vscode/
 *.sqlite3
 geckodriver.log
+media/
+static/
 TODO
 
 elearning/__pycache__/
