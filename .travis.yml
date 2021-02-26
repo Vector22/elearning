@@ -10,10 +10,10 @@ env: DJANGO_SETTINGS_MODULE="elearning.settings.travis"
 services:
   - postgresql
 
-env: DJANGO_SETTINGS_MODULE=elearning.settings.travis
+env: DJANGO_SETTINGS_MODULE="elearning.settings.travis"
 
 script:
-  - ./manage.py test
+  - ./manage.py test courses.tests.test_models
 
 branches:
   only:

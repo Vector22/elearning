@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User, Group, Permission
 
 # For selenium
+from django.conf import settings
 from selenium.webdriver.firefox.webdriver import WebDriver
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
@@ -221,8 +222,13 @@ class SeleniumTest(StaticLiveServerTestCase):
     @classmethod
     def setUpClass(cls):
         super().setUpClass()
-        cls.selenium = WebDriver(
-            executable_path='/home/vector22/bin/geckodriver/geckodriver')
+        if settings.DEBUG:
+            cls.selenium = WebDriver(
+                executable_path='/home/vector22/bin/geckodriver/geckodriver')
+        else:
+            # Geckodriver is on the server
+            cls.selenium = WebDriver(
+                executable_path='/home/ulrich/bin/geckodriver/geckodriver')
         cls.selenium.implicitly_wait(3)
 
     @classmethod
