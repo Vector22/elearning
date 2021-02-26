@@ -13,7 +13,9 @@ services:
 env: DJANGO_SETTINGS_MODULE="elearning.settings.travis"
 
 script:
-  - ./manage.py test courses.tests.test_models
+  - ./manage.py test courses.tests.test_models.SubjectModelTest
+  - ./manage.py test courses.tests.test_models.CourseModelTest
+  - ./manage.py test courses.tests.test_models.ModuleModelTest
 
 branches:
   only:
