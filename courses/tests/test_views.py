@@ -85,11 +85,11 @@ class CourseListViewTest(TestCase):
         # Create some subjects and courses
         subject2 = Subject.objects.create(title='Music', slug='music')
         Course.objects.create(subject=self.subject1,
-                              owner=self.user,
+                              owner=self.admin,
                               title='Course 2',
                               slug='course-2')
         Course.objects.create(subject=subject2,
-                              owner=self.user,
+                              owner=self.admin,
                               title='Course 3',
                               slug='course-3')
 
