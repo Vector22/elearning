@@ -33,9 +33,8 @@ class CourseListViewTest(TestCase):
 
     def setUp(self):
         # Run once for every test method to setup clean data
-        self.user = User.objects.get(
-            id=self.subject1_id)  # The superuser can create courses
-        self.subject1 = Subject.objects.get(id=1)
+        self.user = User.objects.get(id=1)  # The superuser can create courses
+        self.subject1 = Subject.objects.get(id=self.subject1_id)
         self.course1 = Course.objects.create(subject=self.subject1,
                                              owner=self.user,
                                              title='Course 1',
