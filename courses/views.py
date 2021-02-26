@@ -19,7 +19,7 @@ from students.forms import CourseEnrollForm
 # CBV and Mixins for CMS features
 
 
-# Each user can manage it's own contents
+# Each Instructor must manage it's own contents
 class OwnerMixin(object):
     def get_queryset(self):
         qs = super(OwnerMixin, self).get_queryset()
