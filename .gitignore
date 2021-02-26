@@ -6,6 +6,8 @@ TODO
 
 elearning/__pycache__/
 elearning/settings/prod.py
+elearning/settings/__pycache__/
+
 courses/__pycache__/
 courses/migrations/__pycache__/
 courses/templatetags/__pycache__/
