@@ -15,7 +15,8 @@ class CourseListViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        Subject.objects.create(title='Programing', slug='programing')
+        cls.subject1_id = Subject.objects.create(title='Programing',
+                                                 slug='programing').pk
 
         admin = User.objects.create(username="admin",
                                     email="admin@protonmail.com",
@@ -32,7 +33,8 @@ class CourseListViewTest(TestCase):
 
     def setUp(self):
         # Run once for every test method to setup clean data
-        self.user = User.objects.get(id=1)  # The superuser can create courses
+        self.user = User.objects.get(
+            id=self.subject1_id)  # The superuser can create courses
         self.subject1 = Subject.objects.get(id=1)
         self.course1 = Course.objects.create(subject=self.subject1,
                                              owner=self.user,
@@ -128,12 +130,13 @@ class CourseDetailViewTest(TestCase):
         anyuser.set_password('K4rlsTR0m*')
         anyuser.save()
 
-        Subject.objects.create(title='Programing', slug='programing')
+        cls.subject1_id = Subject.objects.create(title='Programing',
+                                                 slug='programing').pk
 
     def setUp(self):
         # Run once for every test method to setup clean data
         self.user = User.objects.get(id=1)  # The superuser can create courses
-        self.subject1 = Subject.objects.get(id=1)
+        self.subject1 = Subject.objects.get(id=self.subject1_id_)
         self.slug1 = self.subject1.slug
         self.course1 = Course.objects.create(subject=self.subject1,
                                              owner=self.user,
