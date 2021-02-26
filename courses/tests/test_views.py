@@ -4,6 +4,7 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User, Group, Permission
 
 # For selenium
+from django.conf import settings
 from selenium.webdriver.firefox.webdriver import WebDriver
 from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
@@ -14,27 +15,28 @@ class CourseListViewTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        Subject.objects.create(title='Programing', slug='programing')
+        cls.subject1_id = Subject.objects.create(title='Programing',
+                                                 slug='programing').pk
 
-        admin = User.objects.create(username="admin",
-                                    email="admin@protonmail.com",
-                                    first_name="Administrator",
-                                    is_superuser=True)
-        admin.set_password('B3nB3n256*')
-        admin.save()
+        cls.admin = User.objects.create(username="admin",
+                                        email="admin@protonmail.com",
+                                        first_name="Administrator",
+                                        is_superuser=True)
+        cls.admin.set_password('B3nB3n256*')
+        cls.admin.save()
 
-        anyuser = User.objects.create(username="anyUser",
-                                      email="anyuser@protonmail.com",
-                                      first_name="Benoit")
-        anyuser.set_password('K4rlsTR0m*')
-        anyuser.save()
+        cls.anyuser = User.objects.create(username="anyUser",
+                                          email="anyuser@protonmail.com",
+                                          first_name="Benoit")
+        cls.anyuser.set_password('K4rlsTR0m*')
+        cls.anyuser.save()
 
     def setUp(self):
         # Run once for every test method to setup clean data
-        self.user = User.objects.get(id=1)  # The superuser can create courses
-        self.subject1 = Subject.objects.get(id=1)
+        # self.user = User.objects.get(id=1)
+        self.subject1 = Subject.objects.get(id=self.subject1_id)
         self.course1 = Course.objects.create(subject=self.subject1,
-                                             owner=self.user,
+                                             owner=self.admin,
                                              title='Course 1',
                                              slug='course-1')
 
@@ -83,11 +85,11 @@ class CourseListViewTest(TestCase):
         # Create some subjects and courses
         subject2 = Subject.objects.create(title='Music', slug='music')
         Course.objects.create(subject=self.subject1,
-                              owner=self.user,
+                              owner=self.admin,
                               title='Course 2',
                               slug='course-2')
         Course.objects.create(subject=subject2,
-                              owner=self.user,
+                              owner=self.admin,
                               title='Course 3',
                               slug='course-3')
 
@@ -114,28 +116,28 @@ class CourseDetailViewTest(TestCase):
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
 
-        admin = User.objects.create(username="admin",
-                                    email="admin@protonmail.com",
-                                    first_name="Administrator",
-                                    is_superuser=True)
-        admin.set_password('B3nB3n256*')
-        admin.save()
+        cls.admin = User.objects.create(username="admin",
+                                        email="admin@protonmail.com",
+                                        first_name="Administrator",
+                                        is_superuser=True)
+        cls.admin.set_password('B3nB3n256*')
+        cls.admin.save()
 
-        anyuser = User.objects.create(username="anyUser",
-                                      email="anyuser@protonmail.com",
-                                      first_name="Benoit")
-        anyuser.set_password('K4rlsTR0m*')
-        anyuser.save()
+        cls.anyuser = User.objects.create(username="anyUser",
+                                          email="anyuser@protonmail.com",
+                                          first_name="Benoit")
+        cls.anyuser.set_password('K4rlsTR0m*')
+        cls.anyuser.save()
 
-        Subject.objects.create(title='Programing', slug='programing')
+        cls.subject1_id = Subject.objects.create(title='Programing',
+                                                 slug='programing').pk
 
     def setUp(self):
         # Run once for every test method to setup clean data
-        self.user = User.objects.get(id=1)  # The superuser can create courses
-        self.subject1 = Subject.objects.get(id=1)
+        self.subject1 = Subject.objects.get(id=self.subject1_id)
         self.slug1 = self.subject1.slug
         self.course1 = Course.objects.create(subject=self.subject1,
-                                             owner=self.user,
+                                             owner=self.admin,
                                              title='Course 1',
                                              slug='course-1')
 
@@ -176,13 +178,13 @@ class ManageCourseListViewTest(TestCase):
         instructor_group.permissions.set([perm_add, perm_edit, perm_del])
         instructor_group.save()
 
-        instructor = User.objects.create(username="instructor",
-                                         email="instruk@protonmail.com",
-                                         first_name="Timothee",
-                                         last_name="Guichert")
-        instructor.set_password('B3nB3n256*')
-        instructor.groups.add(instructor_group)
-        instructor.save()
+        cls.instructor = User.objects.create(username="instructor",
+                                             email="instruk@protonmail.com",
+                                             first_name="Timothee",
+                                             last_name="Guichert")
+        cls.instructor.set_password('B3nB3n256*')
+        cls.instructor.groups.add(instructor_group)
+        cls.instructor.save()
 
         # # A not instructor user
         # user = User.objects.create(username="user",
@@ -216,33 +218,37 @@ class ManageCourseListViewTest(TestCase):
 
 # Some functionnals tests with selenium
 
+# class SeleniumTest(StaticLiveServerTestCase):
+#     @classmethod
+#     def setUpClass(cls):
+#         super().setUpClass()
+#         if settings.DEBUG:
+#             cls.selenium = WebDriver(
+#                 executable_path='/home/vector22/bin/geckodriver/geckodriver')
+#         else:
+#             # Geckodriver is on the server
+#             cls.selenium = WebDriver(
+#                 executable_path='/home/ulrich/bin/geckodriver/geckodriver')
+#         cls.selenium.implicitly_wait(3)
 
-class SeleniumTest(StaticLiveServerTestCase):
-    @classmethod
-    def setUpClass(cls):
-        super().setUpClass()
-        cls.selenium = WebDriver(
-            executable_path='/home/vector22/bin/geckodriver/geckodriver')
-        cls.selenium.implicitly_wait(3)
+#     @classmethod
+#     def tearDownClass(cls):
+#         cls.selenium.quit()
+#         super().tearDownClass()
 
-    @classmethod
-    def tearDownClass(cls):
-        cls.selenium.quit()
-        super().tearDownClass()
+#     def test_login(self):
+#         login_url = f'{self.live_server_url}/accounts/login'
+#         self.selenium.get(login_url)
+#         username_input = self.selenium.find_element_by_id("id_username")
+#         username_input.send_keys('karl')
+#         password_input = self.selenium.find_element_by_id("id_password")
+#         password_input.send_keys('V3ct0r22*')
 
-    def test_login(self):
-        login_url = f'{self.live_server_url}/accounts/login'
-        self.selenium.get(login_url)
-        username_input = self.selenium.find_element_by_id("id_username")
-        username_input.send_keys('karl')
-        password_input = self.selenium.find_element_by_id("id_password")
-        password_input.send_keys('V3ct0r22*')
+#         self.selenium.find_element_by_class_name('login-btn').click()
 
-        self.selenium.find_element_by_class_name('login-btn').click()
+#         # Check the returned result
+#         labels = ['Username', 'Password']
 
-        # Check the returned result
-        labels = ['Username', 'Password']
-
-        # assert the presence of some wignets label
-        for label in labels:
-            assert label in self.selenium.page_source
+#         # assert the presence of some wignets label
+#         for label in labels:
+#             assert label in self.selenium.page_source

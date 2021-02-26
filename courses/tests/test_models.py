@@ -9,11 +9,12 @@ class SubjectModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        Subject.objects.create(title='Programing', slug='programing')
+        cls.subject1_id = Subject.objects.create(title='Programing',
+                                                 slug='programing').pk
 
     def setUp(self):
         # Run once for every test method to setup clean data
-        self.subject1 = Subject.objects.get(id=1)
+        self.subject1 = Subject.objects.get(id=self.subject1_id)
 
     def test_title_label(self):
         field_label = self.subject1._meta.get_field('title').verbose_name
@@ -55,7 +56,8 @@ class CourseModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        Subject.objects.create(title='Programing', slug='programing')
+        cls.subject1_id = Subject.objects.create(title='Programing',
+                                                 slug='programing').pk
         adminUser = User.objects.create(username="admin",
                                         email="admin@protonmail.com",
                                         first_name="Benoit",
@@ -66,7 +68,8 @@ class CourseModelTest(TestCase):
     def setUp(self):
         # Run once for every test method to setup clean data
         self.user = User.objects.last()
-        self.subject1 = Subject.objects.get(id=1)
+        # self.subject1 = Subject.objects.get(id=1)
+        self.subject1 = Subject.objects.get(id=self.subject1_id)
         self.course1 = Course.objects.create(subject=self.subject1,
                                              owner=self.user,
                                              title='Course 1',
@@ -124,7 +127,8 @@ class ModuleModelTest(TestCase):
     @classmethod
     def setUpTestData(cls):
         # Set up non-modified objects used by all test methods
-        Subject.objects.create(title='Programing', slug='programing')
+        cls.subject1_id = Subject.objects.create(title='Programing',
+                                                 slug='programing').pk
         adminUser = User.objects.create(username="admin",
                                         email="admin@protonmail.com",
                                         first_name="Benoit",
@@ -135,7 +139,8 @@ class ModuleModelTest(TestCase):
     def setUp(self):
         # Run once for every test method to setup clean data
         self.user = User.objects.last()
-        self.subject1 = Subject.objects.get(id=1)
+        # self.subject1 = Subject.objects.get(id=1)
+        self.subject1 = Subject.objects.get(id=self.subject1_id)
         self.course1 = Course.objects.create(subject=self.subject1,
                                              owner=self.user,
                                              title='Course 1',
