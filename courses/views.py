@@ -219,3 +219,8 @@ class CourseDetailView(DetailView):
         context['enroll_form'] = CourseEnrollForm(
             initial={'course': self.object})
         return context
+
+
+# dumy error to test sentry
+def trigger_error(request):
+    division_by_zero = 1 / 0

@@ -24,18 +24,10 @@ from courses.views import CourseListView
 
 import debug_toolbar
 
-
-# dumy error to test sentry
-def trigger_error(request):
-    division_by_zero = 1 / 0
-
-
 urlpatterns = [
     # We want to display the list of courses in the URL http://127.0.0.1:8000/
     # and all other URLs for the courses application have the /course/ prefix.
     path('', CourseListView.as_view(), name='course_list'),
-    # Sentry error view
-    path('sentry-debug/', trigger_error),
     # Django debug toolbar
     path('__debug__/', include(debug_toolbar.urls)),
     path('admin/', admin.site.urls),
