@@ -44,4 +44,7 @@ urlpatterns = [
     path('content/order/',
          views.ContentOrderView.as_view(),
          name='content_order'),
+
+    # Sentry error view
+    path('sentry-debug/', views.trigger_error),
 ]
