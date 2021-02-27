@@ -224,3 +224,4 @@ class CourseDetailView(DetailView):
 # dumy error to test sentry
 def trigger_error(request):
     division_by_zero = 1 / 0
+    division_by_zero = division_by_zero + 1
