@@ -21,18 +21,21 @@ and some *javaScript/jQuery* to be achieved.
     - `virtualenv -p python3.8 env` *you can use pyenv or venv*
     - `pip install -r requirements.txt` *to install the required libraries*
 
-3. ### Run the database migrations
+3. ### Set the right settings file
+    - `export DJANGO_SETTINGS_MODULE=elearning.settings.local`
+
+4. ### Run the database migrations
     - `source env/bin/activate`
     - `./python manage.py migrate`
     
-4. ### Create a super user
+5. ### Create a super user
     - The virtal environement is activated
     - `./python manage.py createsuperuser` *follow the steps to create it*
 
-5. ### Run the server
+6. ### Run the server
     - `./python manage.py runserver`
 
-6. ### Create Instructors and some students
+7. ### Create Instructors and some students
     - The instructors can be created in the admin interface of the app.
       You just need to create a user and add it to the **Instructors** group.
     - After, you can create course in the admin panel or via the non admin
@@ -43,7 +46,7 @@ and some *javaScript/jQuery* to be achieved.
       for courses.
     - Students can be created by the *Register Now* link in the login page.
 
-7. ### Try to explore the interface by yourself
+8. ### Try to explore the interface by yourself
     - The drag and drop feature is available for instructors to mange their
      courses and modules contents.
     - Instructors can also follow courses of others
