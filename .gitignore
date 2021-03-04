@@ -1,5 +1,6 @@
 env/
 .vscode/
+.coverage
 *.sqlite3
 geckodriver.log
 media/

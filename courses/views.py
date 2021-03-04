@@ -12,8 +12,8 @@ from django.db.models import Count
 
 from braces.views import CsrfExemptMixin, JsonRequestResponseMixin
 
-from .models import Course, Module, Content, Subject
-from .forms import ModuleFormSet
+from courses.models import Course, Module, Content, Subject
+from courses.forms import ModuleFormSet
 from students.forms import CourseEnrollForm
 
 # CBV and Mixins for CMS features

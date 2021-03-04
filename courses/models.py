@@ -13,7 +13,7 @@ from django.contrib.contenttypes.fields import GenericForeignKey
 from django.template.loader import render_to_string
 # from django.utils.safestring import mark_safe
 
-from .fields import OrderField
+from courses.fields import OrderField
 
 
 class Subject(models.Model):

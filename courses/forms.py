@@ -1,7 +1,7 @@
-from django import forms
+# from django import forms
 from django.forms.models import inlineformset_factory
 
-from .models import Course, Module
+from courses.models import Course, Module
 
 # Since a course is divided into a variable number of modules,
 # it makes sense to use formsets to manage them.
