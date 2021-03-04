@@ -2,7 +2,7 @@ from django.test import TestCase
 from django.contrib.auth.models import User
 # from django.urls import reverse
 
-from courses.models import Subject, Course, Module
+from courses.models import Subject, Course, Module, Text
 
 
 class SubjectModelTest(TestCase):
@@ -34,7 +34,12 @@ class SubjectModelTest(TestCase):
 
     def test_object_name_is_title(self):
         expected_object_name = f'{self.subject1.title}'
-        self.assertEquals(expected_object_name, str(self.subject1))
+        self.assertEquals(expected_object_name, self.subject1.__str__())
+
+    def test_object_saved(self):
+        subject = Subject.objects.get(slug='programing')
+        subject.save()
+        self.assertEqual(subject.title, self.subject1.title)
 
     def test_ordering(self):
         # By default it is ordered by Id
@@ -43,8 +48,11 @@ class SubjectModelTest(TestCase):
         Subject.objects.create(title='Music', slug='music')
         Subject.objects.create(title='Art', slug='art')
 
-        defaultOrder = """<QuerySet [<Subject: Programming>, <Subject: Music>, <Subject: Art>]>"""
-        orderByTitle = """<QuerySet [<Subject: Art>, <Subject: Music>, <Subject: Programing>]>"""
+        defaultOrder = "<QuerySet [<Subject: Programming>, <Subject: Music>, "
+        # Avoid line too long error
+        defaultOrder += "<Subject: Art>]>"
+        orderByTitle = "<QuerySet [<Subject: Art>, <Subject: Music>, "
+        orderByTitle += "<Subject: Programing>]>"
 
         subjectsList = str(Subject.objects.all().only('id', 'title'))
 
@@ -114,8 +122,11 @@ class CourseModelTest(TestCase):
                               title='Course 2',
                               slug='course-2')
 
-        defaultOrder = """<QuerySet [<Course: Course 1>, <Course: Course 3>, <Course: Course 2>]>"""
-        orderByCreated = """<QuerySet [<Course: Course 2>, <Course: Course 3>, <Course: Course 1>]>"""
+        defaultOrder = "<QuerySet [<Course: Course 1>, <Course: Course 3>, "
+        # Avoid line too long error
+        defaultOrder += "<Course: Course 2>]>"
+        orderByCreated = "<QuerySet [<Course: Course 2>, <Course: Course 3>, "
+        orderByCreated += "<Course: Course 1>]>"
 
         courseList = str(Course.objects.all().only('id', 'title'))
 
@@ -195,3 +206,31 @@ class ModuleModelTest(TestCase):
         module5 = Module.objects.create(course=course2, title='Module 5')
 
         self.assertEqual(module5.order, 0)
+
+
+class ContentModelTest(TestCase):
+    @classmethod
+    def setUpTestData(cls):
+        # Set up non-modified objects used by all test methods
+        cls.subject1_id = Subject.objects.create(title='Programing',
+                                                 slug='programing').pk
+        user = User.objects.create(username="admin",
+                                   email="admin@protonmail.com",
+                                   first_name="Benoit",
+                                   is_superuser=True)
+        user.set_password('B3nB3n256*')
+        user.save()
+
+    def setUp(self):
+        self.user = User.objects.last()
+        content_string = """A long text content."""
+        self.text_content = Text.objects.create(title='content 1',
+                                                content=content_string,
+                                                owner=self.user)
+
+    def test_object_name_is_title(self):
+        self.assertEquals(self.text_content.__str__(), 'content 1')
+
+    def test_render_correct_template(self):
+        self.assertEquals(self.text_content.render(),
+                          '<p>A long text content.</p>')

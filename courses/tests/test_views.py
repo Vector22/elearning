@@ -4,9 +4,9 @@ from django.shortcuts import get_object_or_404
 from django.contrib.auth.models import User, Group, Permission
 
 # For selenium
-from django.conf import settings
-from selenium.webdriver.firefox.webdriver import WebDriver
-from django.contrib.staticfiles.testing import StaticLiveServerTestCase
+# from django.conf import settings
+# from selenium.webdriver.firefox.webdriver import WebDriver
+# from django.contrib.staticfiles.testing import StaticLiveServerTestCase
 
 from courses.models import Subject, Course
 
